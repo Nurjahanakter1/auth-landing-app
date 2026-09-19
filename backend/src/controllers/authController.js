@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
 
@@ -34,7 +35,9 @@ const register = async (req, res) => {
 
   const { name, email, password } = req.body;
 
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne(
+    mongoose.sanitizeFilter({ email: String(email) }),
+  );
   if (existingUser) {
     return res.status(409).json({ message: "Email already in use" });
   }
@@ -64,7 +67,7 @@ const login = async (req, res) => {
 
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne(mongoose.sanitizeFilter({ email: String(email) }));
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials" });
   }
