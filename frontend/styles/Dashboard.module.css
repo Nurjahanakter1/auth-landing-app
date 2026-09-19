@@ -1,0 +1,27 @@
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: #f9fafb;
+}
+
+.card {
+  width: min(520px, 100%);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card button {
+  width: fit-content;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+}
